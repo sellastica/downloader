@@ -26,6 +26,7 @@ class Downloader
 		'zip',
 	];
 
+
 	/**
 	 * @param string $file
 	 * @throws \InvalidArgumentException
@@ -60,5 +61,24 @@ class Downloader
 		header('Content-disposition: attachment; filename="' . $filename . '"');
 		echo $content;
 		exit;
+	}
+
+	/**
+	 * @param string $extension
+	 * @return bool
+	 */
+	public static function isExtensionAllowed(string $extension): bool
+	{
+		return in_array($extension, self::$allowedExtensions);
+	}
+
+	/**
+	 * @param string $file
+	 * @return bool
+	 */
+	public static function isFileAllowed(string $file): bool
+	{
+		$extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+		return self::isExtensionAllowed($extension);
 	}
 }
