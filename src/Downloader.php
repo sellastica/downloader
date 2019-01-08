@@ -30,6 +30,7 @@ class Downloader
 		'wmv',
 		'xls',
 		'xlsx',
+		'xml',
 		'zip',
 	];
 
